@@ -10,7 +10,7 @@
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/pluralsight-projects/node-express-oauth.git",
-		"test:module2":"mocha --exit ./test/module1/*.js"
+		"test:module2": "mocha --exit ./test/module1/*.js"
 	},
 	"author": "Soham Kamani",
 	"license": "ISC",
@@ -28,5 +28,10 @@
 		"moxios": "^0.4.0",
 		"sinon": "^9.0.2",
 		"supertest": "^4.0.2"
+	},
+	"devDependencies": {
+		"eslint": "^7.22.0",
+		"eslint-config-airbnb-base": "^14.2.1",
+		"eslint-plugin-import": "^2.22.1"
 	}
 }
