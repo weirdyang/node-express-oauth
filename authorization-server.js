@@ -98,7 +98,6 @@ app.post('/approve', (req, res) => {
 });
 
 app.post('/token', (req, res) => {
-
   const authHeader = req.headers?.authorization;
   if (!authHeader) {
     return res.status(401).send('no auth headers');
@@ -121,11 +120,7 @@ app.post('/token', (req, res) => {
   // Synchronous Sign with RSA SHA256
   // sign with RSA SHA256
   // https://www.npmjs.com/package/jsonwebtoken
-  const privateKeyPath = path.join(
-    __dirname,
-    'assets',
-    'private_key.pem',
-  );
+  const privateKeyPath = path.join(__dirname, 'assets', 'private_key.pem');
 
   const privateKey = fs.readFileSync(privateKeyPath);
   const token = jwt.sign(
@@ -133,7 +128,7 @@ app.post('/token', (req, res) => {
       userName: authcode.userName,
       scope: authcode.clientReq.scope,
     },
-    privateKey,
+    config.privateKey,
     { algorithm: 'RS256' },
   );
   return res.json({
@@ -149,5 +144,8 @@ const server = app.listen(config.port, 'localhost', () => {
 // for testing purposes
 
 module.exports = {
-  app, requests, authorizationCodes, server,
+  app,
+  requests,
+  authorizationCodes,
+  server,
 };

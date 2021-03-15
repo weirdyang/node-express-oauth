@@ -37,18 +37,14 @@ it('/approve route redirects the user on success @authorization-server-approve-r
 
       const code = Object.keys(authorizationCodes)[0];
 
-      const expectedUri =				`http://www.my-redirect.com/route?code=${
-				 encodeURIComponent(code)
-				 }&state=${
-				 state}`;
+      const expectedUri = `http://www.my-redirect.com/route?code=${encodeURIComponent(
+        code,
+      )}&state=${state}`;
       const actualUri = res.header.location;
       assert.equal(
         actualUri,
         expectedUri,
-        `The /approve route should redirect to the correct URI. Got: ${
-					 actualUri
-					 } Wanted: ${
-					 expectedUri}`,
+        `The /approve route should redirect to the correct URI. Got: ${actualUri} Wanted: ${expectedUri}`,
       );
     });
 });
