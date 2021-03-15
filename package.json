@@ -9,7 +9,8 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/pluralsight-projects/node-express-oauth.git"
+		"url": "git+https://github.com/pluralsight-projects/node-express-oauth.git",
+		"test:module2":"mocha --exit ./test/module1/*.js"
 	},
 	"author": "Soham Kamani",
 	"license": "ISC",
