@@ -120,15 +120,15 @@ app.post('/token', (req, res) => {
   // Synchronous Sign with RSA SHA256
   // sign with RSA SHA256
   // https://www.npmjs.com/package/jsonwebtoken
-  // onst privateKeyPath = path.join(__dirname, 'assets', 'private_key.pem');
+  const privateKeyPath = path.join(__dirname, 'assets', 'private_key.pem');
 
-  // const privateKey = fs.readFileSync(privateKeyPath);
+  const privateKey = fs.readFileSync(privateKeyPath);
   const token = jwt.sign(
     {
       userName: authcode.userName,
       scope: authcode.clientReq.scope,
     },
-    config.privateKey,
+    privateKey,
     { algorithm: 'RS256' },
   );
   return res.json({
