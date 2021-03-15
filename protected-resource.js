@@ -53,7 +53,6 @@ app.get('/user-info', (req, res) => {
     const user = {};
     payload.scope.split(' ').forEach((ele) => {
       const permission = ele.slice('permission:'.length);
-      console.log(permission);
       user[permission] = client[permission];
     });
     return res.json(user);
