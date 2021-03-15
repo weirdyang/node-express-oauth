@@ -98,7 +98,7 @@ app.post('/approve', (req, res) => {
 });
 
 app.post('/token', (req, res) => {
-  console.log(req);
+
   const authHeader = req.headers?.authorization;
   if (!authHeader) {
     return res.status(401).send('no auth headers');
