@@ -5,12 +5,12 @@
 	"main": "client.js",
 	"scripts": {
 		"test": "mocha --exit ./test/**/*",
-		"test-dev": "mocha --watch ./test/**/*"
+		"test-dev": "mocha --watch ./test/**/*",
+		"test:module1": "mocha --exit ./test/module1/*.js"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/pluralsight-projects/node-express-oauth.git",
-		"test:module2": "mocha --exit ./test/module1/*.js"
+		"url": "git+https://github.com/pluralsight-projects/node-express-oauth.git"
 	},
 	"author": "Soham Kamani",
 	"license": "ISC",
