@@ -2,6 +2,7 @@ const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
+const path = require('path');
 const {
   randomString,
   containsAll,
@@ -95,7 +96,61 @@ app.post('/approve', (req, res) => {
 
   return res.redirect(redirectUrl.href);
 });
+
+app.post('/token', (req, res) => {
+  console.log(req);
+  const authHeader = req.headers?.authorization;
+  if (!authHeader) {
+    return res.status(401).send('no auth headers');
+  }
+  const { clientId, clientSecret } = decodeAuthCredentials(authHeader);
+
+  if (!clientId || !clientSecret) {
+    return res.status(401).send('invalid auth details');
+  }
+  if (!clients[clientId] || clients[clientId].clientSecret !== clientSecret) {
+    return res.status(401).send('invalid auth details');
+  }
+  const { code } = req.body;
+  if (!authorizationCodes[code]) {
+    return res.status(401).send('invalid auth code');
+  }
+  const authcode = authorizationCodes[code];
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete
+  delete authorizationCodes[code];
+  // Synchronous Sign with RSA SHA256
+  // sign with RSA SHA256
+  // https://www.npmjs.com/package/jsonwebtoken
+  const privateKeyPath = path.join(
+    __dirname,
+    'assets',
+    'private_key.pem',
+  );
+
+  console.log(privateKeyPath);
+  const privateKey = fs.readFileSync(privateKeyPath);
+  const token = jwt.sign(
+    {
+      userName: authcode.userName,
+      scope: authcode.clientReq.scope,
+    },
+    privateKey,
+    { algorithm: 'RS256' },
+  );
+  return res.json({
+    access_token: token,
+    token_type: 'Bearer',
+  });
+});
 const server = app.listen(config.port, 'localhost', () => {
+  console.log(config.port);
+  const privateKeyPath = path.join(
+    __dirname,
+    'assets',
+    'private_key.pem',
+  );
+
+  console.log(privateKeyPath);
   const host = server.address().address;
   const { port } = server.address();
 });
