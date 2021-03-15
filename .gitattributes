@@ -6,24 +6,24 @@
 # to native line endings on checkout.
 *.c text
 *.h text
-# These files are text and should be normalized (Convert crlf => lf)
-*.php text
-*.css text
-*.js text
-*.json text
-*.htm text
-*.html text
-*.xml text
-*.txt text
-*.ini text
-*.inc text
-*.pl text
-*.rb text
-*.py text
-*.scm text
-*.sql text
-.htaccess text
-*.sh text
+# # These files are text and should be normalized (Convert crlf => lf)
+# *.php text
+# *.css text
+# *.js text
+# *.json text
+# *.htm text
+# *.html text
+# *.xml text
+# *.txt text
+# *.ini text
+# *.inc text
+# *.pl text
+# *.rb text
+# *.py text
+# *.scm text
+# *.sql text
+# .htaccess text
+# *.sh text
 # Declare files that will always have CRLF line endings on checkout.
 *.sln text eol=crlf
 
