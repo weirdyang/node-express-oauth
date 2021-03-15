@@ -74,15 +74,12 @@ app.get('/authorize', (req, res) => {
 app.post('/approve', (req, res) => {
   const { userName, password, requestId } = req.body;
   if (!users[userName] || !password || !requestId) {
-    console.log('1');
     return res.status(401).send('invalid body');
   }
   if (!users[userName] && users[userName] !== password) {
-    console.log('2');
     return res.status(401).send('invalid login details');
   }
   if (!requests[requestId]) {
-    console.log('3');
     return res.status(401).send('invalid request id');
   }
   const clientReq = requests[requestId];
@@ -95,7 +92,7 @@ app.post('/approve', (req, res) => {
   const redirectUrl = new URL(redirect_uri);
   redirectUrl.searchParams.append('code', key);
   redirectUrl.searchParams.append('state', state);
-  
+
   return res.redirect(redirectUrl.href);
 });
 const server = app.listen(config.port, 'localhost', () => {
