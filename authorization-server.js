@@ -128,7 +128,7 @@ app.post('/token', (req, res) => {
       userName: authcode.userName,
       scope: authcode.clientReq.scope,
     },
-    config.privateKey,
+    privateKey,
     { algorithm: 'RS256' },
   );
   return res.json({
