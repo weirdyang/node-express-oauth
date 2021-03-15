@@ -6,7 +6,9 @@
 	"scripts": {
 		"test": "mocha --exit ./test/**/*",
 		"test-dev": "mocha --watch ./test/**/*",
-		"test:module1": "mocha --exit ./test/module1/*.js"
+		"test:module1": "mocha --exit ./test/module1/*.js",
+		"test:module2": "mocha --exit ./test/module2/*.js",
+		"test:module3": "mocha --exit ./test/module3/*.js"
 	},
 	"repository": {
 		"type": "git",
