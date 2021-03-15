@@ -127,7 +127,6 @@ app.post('/token', (req, res) => {
     'private_key.pem',
   );
 
-  console.log(privateKeyPath);
   const privateKey = fs.readFileSync(privateKeyPath);
   const token = jwt.sign(
     {
@@ -143,14 +142,6 @@ app.post('/token', (req, res) => {
   });
 });
 const server = app.listen(config.port, 'localhost', () => {
-  console.log(config.port);
-  const privateKeyPath = path.join(
-    __dirname,
-    'assets',
-    'private_key.pem',
-  );
-
-  console.log(privateKeyPath);
   const host = server.address().address;
   const { port } = server.address();
 });
